@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import Icon from '../components/Icon.jsx';
 import ProductForm from '../components/ProductForm.jsx';
 import KardexDialog from '../components/KardexDialog.jsx';
+import ResponsiveTable from '../components/ResponsiveTable.jsx';
 import { useToast } from '../components/Toast.jsx';
 import { LEVELS, money, stockLevel } from '../utils.js';
 
@@ -120,7 +121,7 @@ export default function Products({ products, onChanged, onMove }) {
             )}
           </div>
         ) : (
-          <div className="table-wrap">
+          <ResponsiveTable>
             <table className="table table-cards">
               <thead>
                 <tr>
@@ -173,7 +174,7 @@ export default function Products({ products, onChanged, onMove }) {
                 })}
               </tbody>
             </table>
-          </div>
+          </ResponsiveTable>
         )}
       </section>
 

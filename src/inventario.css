@@ -264,21 +264,24 @@ fieldset.section legend { padding: 0 0.5rem; font-weight: 800; font-size: 1.05re
 .result-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem; }
 .result .alert { text-align: left; }
 
+/* La tabla pasa a "tarjetas" (cada dato con su título, sin scroll horizontal) apenas el
+   contenido no entra en el ancho disponible — lo decide ResponsiveTable.jsx midiendo el
+   desborde real, no un punto fijo de ventana: así funciona igual con letra grande, ventana
+   angosta o nombres de producto largos. */
+.table-wrap.is-stacked .table-cards thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
+.table-wrap.is-stacked .table-cards, .table-wrap.is-stacked .table-cards tbody, .table-wrap.is-stacked .table-cards tr, .table-wrap.is-stacked .table-cards td { display: block; width: 100%; }
+.table-wrap.is-stacked .table-cards tr { margin-bottom: 0.9rem; padding: 0.3rem 0.4rem; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+.table-wrap.is-stacked .table-cards tbody tr:hover { background: #fff; }
+.table-wrap.is-stacked .table-cards td { display: flex; justify-content: space-between; align-items: center; gap: 1rem; text-align: right; border-bottom: 1px dashed var(--line); }
+.table-wrap.is-stacked .table-cards td:last-child { border-bottom: 0; }
+.table-wrap.is-stacked .table-cards td::before { content: attr(data-label); flex: none; font-weight: 700; color: var(--muted); text-align: left; }
+.table-wrap.is-stacked .table-cards td .chips { justify-content: flex-end; }
+.table-wrap.is-stacked .table-cards td.actions { display: grid; }
+.table-wrap.is-stacked .table-cards td.actions::before { content: none; }
+
 /* ── Pantallas angostas ────────────────────────────────────────────────── */
 @media (max-width: 900px) {
   .banner { grid-template-columns: auto 1fr; }
   .banner .btn { grid-column: 1 / -1; }
-
-  /* La tabla pasa a tarjetas: cada dato con su título, sin scroll horizontal */
-  .table-cards thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }
-  .table-cards, .table-cards tbody, .table-cards tr, .table-cards td { display: block; width: 100%; }
-  .table-cards tr { margin-bottom: 0.9rem; padding: 0.3rem 0.4rem; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
-  .table-cards tbody tr:hover { background: #fff; }
-  .table-cards td { display: flex; justify-content: space-between; align-items: center; gap: 1rem; text-align: right; border-bottom: 1px dashed var(--line); }
-  .table-cards td:last-child { border-bottom: 0; }
-  .table-cards td::before { content: attr(data-label); flex: none; font-weight: 700; color: var(--muted); text-align: left; }
-  .table-cards td .chips { justify-content: flex-end; }
-  .table-cards td.actions { display: grid; }
-  .table-cards td.actions::before { content: none; }
   .whoami { display: none; }
 }

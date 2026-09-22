@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { api } from '../api.js';
 import Modal from './Modal.jsx';
 import Icon from './Icon.jsx';
+import ResponsiveTable from './ResponsiveTable.jsx';
 import { MOVE_TYPES, SYNC_STATES, fmtDateTime } from '../utils.js';
 
 // Historial de movimientos de un producto (el "kardex"), del más reciente al más antiguo.
@@ -44,7 +45,7 @@ export default function KardexDialog({ product, onClose }) {
       )}
 
       {rows && rows.length > 0 && (
-        <div className="table-wrap">
+        <ResponsiveTable>
           <table className="table table-cards">
             <thead>
               <tr><th>Fecha</th><th>Qué pasó</th><th>Talla</th><th className="num">Cantidad</th><th>Nota</th><th>Estado</th></tr>
@@ -70,7 +71,7 @@ export default function KardexDialog({ product, onClose }) {
               })}
             </tbody>
           </table>
-        </div>
+        </ResponsiveTable>
       )}
     </Modal>
   );
